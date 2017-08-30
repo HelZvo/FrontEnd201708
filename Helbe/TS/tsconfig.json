@@ -22,7 +22,7 @@
         "sourceMap": true,
         "lib":[ "dom", "es5", "es6", "es2016.array.include" ],
         "outFile": "app.js",
-        "baseUrl": "./app/",
+        "baseUrl": "./app/", //lisab koik ts failid ühte app.js faili
         "paths": {
             "*": ["*", "generated/*"]
         },

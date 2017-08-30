@@ -1,7 +1,25 @@
 namespace Helper {
     console.log('helper.ts');
 
-    export const getHTMLTemplate = (file: string) => { // et saaks serverist kätte template
+    export const getParameterByName = (name: string) => {
+        const url = window.location.href; // tagastab täieliku aadressi http jne
+        name = name.replace(/[\[\]]/g, '\\$&'); // otsib spetsiaalseid märke ja eemaldab need, keerukate nimetuste korral
+        const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`); // otsib küsimärki või &
+        const result = regex.exec(url);
+        if(!result) {
+            return undefined;
+        }
+        if(!result[2]) {
+            return '';
+        }
+        return decodeURIComponent(result[2].replace(/\+/g, ' '));
+       // confirm.log(name);
+    };
+    export const removeParams = () => {
+        window.location.href = window.location.origin + window.location.hash;
+    };
+
+    export const getHTMLTemplate = (file: string) => { //ajaxi funktsionaalsus
         let templateHTML = 'fail';
         const xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {
@@ -17,7 +35,7 @@ namespace Helper {
         return templateHTML;
     };
 
-    export const parseHTMLString = (target: string, mustache: string, content: string) => {
+    export const parseHTMLString = (target: string, mustache: string, content: string) => { // mustasche funktsionaalsus
         return target.replace(mustache, content);
     };
 }

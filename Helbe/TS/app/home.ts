@@ -11,9 +11,9 @@ class Home extends Page {
 
     private _template: string;
     private _restJSON: IGreeting;
-    private _homeModule : Element;
-    private _button :HTMLButtonElement;
-    private _list: Element;
+    private _homeModule: Element;
+    private _button: HTMLButtonElement;
+    private _text: Element;
 
     constructor() {
         super();
@@ -36,7 +36,7 @@ class Home extends Page {
         this._button.addEventListener('click', this._refresh.bind(this));
     }
     protected _render() {
-        this._text.innerHTML = `Id: ${this._restJSON.id} Sisu:${this._restJSON.content}`;
+        this._text.innerHTML = `Id: ${this._restJSON.id} Sisu: ${this._restJSON.content}`; //rest
     }
     private _refresh() {
         const restAnswer =
@@ -45,4 +45,6 @@ class Home extends Page {
         this._render();
     }
 
+
+    
 }

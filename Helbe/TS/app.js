@@ -12,6 +12,23 @@ var __extends = (this && this.__extends) || (function () {
 var Helper;
 (function (Helper) {
     console.log('helper.ts');
+    Helper.getParameterByName = function (name) {
+        var url = window.location.href; // tagastab täieliku aadressi http jne
+        name = name.replace(/[\[\]]/g, '\\$&'); // otsib spetsiaalseid märke ja eemaldab need, keerukate nimetuste korral
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"); // otsib küsimärki või &
+        var result = regex.exec(url);
+        if (!result) {
+            return undefined;
+        }
+        if (!result[2]) {
+            return '';
+        }
+        return decodeURIComponent(result[2].replace(/\+/g, ' '));
+        // confirm.log(name);
+    };
+    Helper.removeParams = function () {
+        window.location.href = window.location.origin + window.location.hash;
+    };
     Helper.getHTMLTemplate = function (file) {
         var templateHTML = 'fail';
         var xmlHttp = new XMLHttpRequest();
@@ -54,21 +71,66 @@ var Page = (function () {
 }());
 /// <reference path='helper.ts' />
 /// <reference path='page.ts' />
+var EventPage = (function (_super) {
+    __extends(EventPage, _super);
+    function EventPage() {
+        var _this = _super.call(this) || this;
+        _this._cacheDOM();
+        _this._bindEvents();
+        _this._render();
+        return _this;
+    }
+    EventPage.prototype._cacheDOM = function () {
+        this._template = Helper.getHTMLTemplate('templates/event-template.html');
+        this._peopleModule = document.querySelector('main');
+        this._peopleModule.outerHTML = this._template;
+        this._peopleModule = document.getElementById('event');
+        this._microTemplate = this._peopleModule.querySelector('script').innerText;
+        this._list = this._peopleModule.querySelector('ul');
+    };
+    EventPage.prototype._bindEvents = function () {
+        this._list.addEventListener('click', this._deletePerson.bind(this));
+    };
+    EventPage.prototype._render = function () {
+        var _this = this;
+        this._participant = JSON.parse(localStorage.getItem('people'));
+        var people = '';
+        this._participant.forEach(function (value) {
+            var parsePass1 = Helper.parseHTMLString(_this._microTemplate, '{{name}}', value.name);
+            var parsePass2 = Helper.parseHTMLString(parsePass1, '{{joined}}', value.joined);
+            people += parsePass2;
+        });
+        this._list.innerHTML = people;
+    };
+    EventPage.prototype._deletePerson = function (e) {
+        if (e.target && e.target.nodeName === 'BUTTON') {
+            var element = e.target.parentElement;
+            var parent_1 = element.parentElement;
+            var index = Array.prototype.indexOf.call(parent_1.children, element); //vanema lapsi vaatleme kui massiivi ja otsime indext selt
+            this._participant.splice(index, 1); //see kustutab  html-st visuaalselt
+            localStorage.setItem('people', JSON.stringify(this._participant)); //kustutab andmebaasist
+            this._render();
+        }
+    };
+    return EventPage;
+}(Page));
+/// <reference path='helper.ts' />
+/// <reference path='page.ts' />
 console.log('gallery.ts');
 var Gallery = (function (_super) {
     __extends(Gallery, _super);
     function Gallery() {
         var _this = _super.call(this) || this;
-        _this._pictures = [{ title: 'Auto', description: 'üks auto', link: 'Auto.jpg' },
-            { title: 'Taevas', description: 'üks Taevas', link: 'Taevas.jpg' },
-            { title: 'Taevas2', description: 'üks Taevas2', link: 'Taevas2.jpg' },
-            { title: 'Tilgad', description: 'üks Tilgad', link: 'Tilgad.jpg' },
-            { title: 'Tilk', description: 'üks Tilk', link: 'Tilk.jpg' },
-            { title: 'TuhmSulps', description: 'üks TuhmSulps', link: 'TuhmSulps.jpg' },
-            { title: 'TuhmSulps2', description: 'üks TuhmSulps2', link: 'TuhmSulps2.jpg' },
-            { title: 'VeeSulps', description: 'üks VeeSulps', link: 'VeeSulps.jpg' },
-            { title: 'VeeSulps2', description: 'üks VeeSulps2', link: 'VeeSulps2.jpg' },
-            { title: 'VeeT6us', description: 'üks VeeT6us', link: 'VeeT6us.jpg' }];
+        _this._pictures = [{ title: 'Auto', description: 'Üks Auto', link: 'Auto.jpg' },
+            { title: 'Taevas', description: 'Üks Taevas', link: 'Taevas.jpg' },
+            { title: 'Taevas2', description: 'Üks Taevas2', link: 'Taevas2.jpg' },
+            { title: 'Tilgad', description: 'Üks Tilgad', link: 'Tilgad.jpg' },
+            { title: 'Tilk', description: 'Üks Tilk', link: 'Tilk.jpg' },
+            { title: 'TuhmSulps', description: 'Üks TuhmSulps', link: 'TuhmSulps.jpg' },
+            { title: 'TuhmSulps2', description: 'Üks TuhmSulps2', link: 'TuhmSulps2.jpg' },
+            { title: 'VeeSulps', description: 'Üks VeeSulps', link: 'VeeSulps.jpg' },
+            { title: 'VeeSulps2', description: 'Üks VeeSulps2', link: 'VeeSulps2.jpg' },
+            { title: 'VeeT6us', description: 'Üks VeeT6us', link: 'VeeT6us.jpg' }];
         _this._cacheDOM();
         _this._bindEvents();
         _this._render();
@@ -79,12 +141,11 @@ var Gallery = (function (_super) {
         this._picsModule = document.querySelector('main');
         this._picsModule.outerHTML = this._template;
         this._picsModule = document.getElementById('gallery');
-        this._button = this._homeModule.querySelec;
         this._microTemplate = this._picsModule.querySelector('script').innerText;
         this._list = this._picsModule.querySelector('#images');
     };
     Gallery.prototype._bindEvents = function () {
-        // this._button.addEventListener('click', this._refresh.bind(this));
+        // tyhi
     };
     Gallery.prototype._render = function () {
         var _this = this;
@@ -92,7 +153,7 @@ var Gallery = (function (_super) {
         this._pictures.forEach(function (value) {
             var parsePass1 = Helper.parseHTMLString(_this._microTemplate, '{{caption}}', value.title);
             var parsePass2 = Helper.parseHTMLString(parsePass1, '{{source}}', "images/" + value.link);
-            var parsePass3 = Helper.parseHTMLString(parsePass2, '{{alternative}}', value.description);
+            var parsePass3 = Helper.parseHTMLString(parsePass2, '{{altenative}}', value.description);
             pics += parsePass3;
         });
         this._list.innerHTML = pics;
@@ -124,7 +185,7 @@ var Home = (function (_super) {
         this._button.addEventListener('click', this._refresh.bind(this));
     };
     Home.prototype._render = function () {
-        this._text.innerHTML = "Id: " + this._restJSON.id + " Sisu:" + this._restJSON.content;
+        this._text.innerHTML = "Id: " + this._restJSON.id + " Sisu: " + this._restJSON.content; //rest
     };
     Home.prototype._refresh = function () {
         var restAnswer = Helper.getHTMLTemplate('http://rest-service.guides.spring.io/greeting');
@@ -174,11 +235,13 @@ var Navigation = (function () {
 /// <reference path='navigation.ts' />
 /// <reference path='home.ts' />
 /// <reference path='gallery.ts' />
+/// <reference path='eventPage.ts' />
 console.log('main.ts');
 var App = (function () {
     function App() {
         this._navLinks = [{ name: 'Pealeht', link: '#home' },
-            { name: 'Galerii', link: '#gallery' }];
+            { name: 'Galerii', link: '#gallery' },
+            { name: 'Üritus', link: '#event' }];
         this._bindEvents();
         this._setup();
         this._urlChanged();
@@ -193,6 +256,8 @@ var App = (function () {
             window.location.hash = this._navLinks[0].link;
         }
         var nav = new Navigation(this._navLinks);
+        this._checkParams();
+        this._urlChanged();
     };
     App.prototype._urlChanged = function () {
         var _this = this;
@@ -204,9 +269,26 @@ var App = (function () {
                 else if (value.link === _this._navLinks[1].link) {
                     _this.page = new Gallery();
                 }
-                ;
+                else if (value.link === _this._navLinks[2].link) {
+                    _this.page = new EventPage();
+                }
             }
         });
+    };
+    App.prototype._checkParams = function () {
+        var name = Helper.getParameterByName('name');
+        var joined = Helper.getParameterByName('joined');
+        if (name && joined) {
+            Helper.removeParams();
+            var people = JSON.parse(localStorage.getItem('people'));
+            if (!people) {
+                people = [];
+            }
+            var person = { name: name, joined: joined }; //{name: name, joined: joined}; 
+            people.push(person);
+            console.log(people);
+            localStorage.setItem('people', JSON.stringify(people));
+        }
     };
     return App;
 }());
