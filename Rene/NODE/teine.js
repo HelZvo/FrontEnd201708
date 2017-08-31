@@ -168,5 +168,107 @@ var Teine;
     var re = /(\w+)\s(\w+)/;
     var nimi = 'Juku Tamm';
     console.log(nimi.replace(re, '$2, $1')); /* Tamm, Juku */
+    // Massiivid
+    var massiiv = ['õun', 'pirn', 'banaan', 'sidrun'];
+    var massiivipikkus = massiiv.length;
+    // const massiiv2 = Array.from(massiiv);
+    var massiiv3 = new Array('õun', 'pirn', 'banaan', 'sidrun');
+    // const massiiv3 = new Array('õun','pirn', 'banaan','sidrun');
+    // õhe elemendi puhul esimene loob ikka masiivi aga teine tagastab sama elemendi
+    Array.isArray(massiiv); // kas on massiiv
+    massiiv3 = massiiv3.concat(massiiv);
+    massiiv3.slice(2, 5); // kopeerib
+    // massiiv = massiiv3.splice(2,3); // eemaldab
+    // massiiv3.copyWithin(2, 1, 3); // Kopeerib juba massiivi sees
+    massiiv.fill('', 0, 10);
+    console.log(massiiv3);
+    // lisamine ja eemaldamine
+    massiiv3.push('apelsin'); // lisab lõppu
+    massiiv3.pop(); //apelsin
+    masiiiv3.unshift('ploom');
+    masiiv3.shift(); //ploom
+    // otsing
+    massiiv3.includes('sidrun', 2); // true
+    masiiv3.indexOf('sidrun', 2);
+    massiiv3.find('sidrun', 2);
+    massiiv3.find(function (element) { return element.startsWith('ba'); });
+    //kuvamine 
+    massiiv3.toString();
+    masiiv3.toLocaleString();
+    console.log(massiiv3.toLocaleString());
+    // muu massiiv
+    massiiv3.every(function (element) { return element[0] === element[0].toLowerCase(); }); //kõik elemendid
+    massiiv3.some(function (element) { return element[0] === element[0].toUpperCase(); }); // vähemalt üks
+    //sorteerimine
+    massiiv3.sort(); //sorteerib arvu > suur täht > väike täht
+    var numbrid = [2, 4, 5, 1, 7];
+    numbrid.sort(function (a, b) {
+        return b - a;
+    });
+    console.log(numbrid);
+    massiiv3.reverse(); // pöörab massiivi tagurpidi
+    // recude RecudeRight
+    var numbrid2 = [[1, 2][4, 7][8, 9]];
+    numbrid2.reduce(function (a, b) { return a.concat(b); });
+    console.log(numbrid2);
+    //map, filter
+    numbrid2 = numbrid2.map(Math.sqrt);
+    numbrid2 = numbrid2.filter(function (arv) { return arv < 2; });
+    //keys values entries
+    var iterator = numbrid.entries();
+    for (var _i = 0, iterator_1 = iterator; _i < iterator_1.length; _i++) {
+        var entry = iterator_1[_i];
+        console.log(entry);
+    }
+    console.log(iterator.next().value);
+    var iterator2 = numbrid.keys();
+    console.log(iterator2.next().value);
+    console.log(iterator2.next().value);
+    var iterator3 = numbrid.keys();
+    console.log(iterator3.next().value);
+    console.log(iterator3.next().value);
+    numbrid.forEach(function (element) { console.log(element); });
+    // Map ja Set
+    var map = new Map([['T', 25], ['P', 32], ['L', 21]]);
+    map.set('S', 5);
+    map.set('P', 21);
+    map.delete('L');
+    map.clear(); // kustutab kõik
+    map.has('T'); // true
+    map.get('T'); // 25
+    // map.forEach;
+    map.size; // elementide arv
+    for (var _a = 0, _b = Array.from(map); _a < _b.length; _a++) {
+        var _c = _b[_a], key = _c[0], value = _c[1];
+        console.log(key + ": " + value);
+    }
+    console.log(map.size); // elementide arv
+    // Functions 
+    function funk(param) {
+        console.log(this.samm);
+        return param;
+    }
+    console.log(funk.name + " " + funk.length);
+    var See = (function () {
+        function See() {
+            this.samm = 5;
+            // kasutada ainult kui vaja manipuleerida this
+            funk.apply(this, [3, 2, 1]);
+            // funk.apply();
+            // funk.bind();
+            funk.call(1, 2, 3); //funk (1,2,3);
+        }
+        return See;
+    }());
+    // DOM
+    var element = document.getElementById('pealkiri');
+    var elements = document.getElementsByClassName('nav-item');
+    var elements1 = document.getElementsByTagName('article');
+    var element2 = document.querySelector('body article'); // tagastab esimest elementi
+    var elements1 = document.querySelectorAll('body article'); // css queryde abil
+    // $('body article');
+    elements.item(0);
+    // Halvemad alternatiivid event listenerile
+    elements.item(0).onclick = function (event) { alert('Hello'); };
 })(Teine || (Teine = {}));
 //# sourceMappingURL=teine.js.map

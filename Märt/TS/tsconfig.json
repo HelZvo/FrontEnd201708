@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "emitBOM": false,
+        "newLine": "CRLF",
+        "pretty": true,
+        "diagnostics": true,
+        
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "allowUnusedLabels": false,
+        "allowUnreachableCode": false,
+        "strictNullChecks": true,
+        "alwaysStrict": true,
+        "strict": true,
+
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "lib":[ "dom", "es5", "es6", "es2016.array.include" ],
+        "outFile": "app.js",
+        "baseUrl": "./app/",
+        "paths": {
+            "*": ["*", "generated/*"]
+        },
+        "plugins": [{ "name": "tslint-language-service"}]
+    },
+    "compileOnSave": true,
+    "include": [ "**/*.ts" ],
+    "exclude": ["node_modules", "**/*.spec.ts", "comp", "dist"]
+}

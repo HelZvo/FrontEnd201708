@@ -18,5 +18,9 @@
     width: 640px;
     height: 320px;
 }
-
+#btn2{
+   background-color: #d0e9c6;
+    border-color: #d0e9c6;
+    color: #d0e9c6; 
+}
 

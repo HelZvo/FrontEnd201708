@@ -1,0 +1,46 @@
+body, html {margin:0;padding:0;
+            height:100%;
+            font-family:arial;}
+
+ul,li,a,h1 {margin:0;padding:0;}
+
+#left-container {
+    float:left;
+    height:100%;
+    width:200px;
+    border-right:1px solid lightgray;
+}
+
+ul {
+    list-style-type:none;
+}
+
+li {
+    margin:0;
+    text-align:center;
+    padding: 10px 0;
+    width:100%;
+    border-bottom:1px solid lightgray;
+}
+
+li:first-child { border-top:1px solid lightgray;}
+
+
+#links a {text-decoration: none;
+    color:gray;
+    font-size:0.7em;
+}
+
+#left-container h1 {
+    text-align:center;
+    padding:55px 0;
+}
+
+i{
+    color:gray;
+}
+
+#socialmedia {
+    width:100%;
+    margin:0 auto;
+}
