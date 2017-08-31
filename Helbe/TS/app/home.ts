@@ -1,5 +1,6 @@
 /// <reference path='helper.ts' />
 /// <reference path='page.ts' />
+/// <reference path='animals.ts' />
 console.log('home.ts');
 
 interface IGreeting {
@@ -29,7 +30,7 @@ class Home extends Page {
         this._homeModule = document.getElementById('home');
         this._button = this._homeModule.querySelector('#refresh') as HTMLButtonElement;
         this._text = this._homeModule.querySelector('#restOutput');
-
+        const animals = new Animals(); // kutsub funktsiooni välja
         this._refresh();
     }
     protected _bindEvents() {
@@ -44,7 +45,5 @@ class Home extends Page {
         this._restJSON = JSON.parse(restAnswer) as IGreeting;
         this._render();
     }
-
-
-    
+  
 }

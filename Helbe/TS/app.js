@@ -29,6 +29,15 @@ var Helper;
     Helper.removeParams = function () {
         window.location.href = window.location.origin + window.location.hash;
     };
+    Helper.formatEmails = function (className, splitter) {
+        var emails = document.getElementsByClassName(className);
+        for (var index = 0; index < emails.length; ++index) {
+            var emailParts = emails.item(index).innerHTML.split(splitter);
+            var email = emailParts[0] + "@" + emailParts[1]; // votab elemendi loikab pooleks
+            var link = "<a href=\"mailto:" + email + "\">" + email + "</a>";
+            emails.item(index).outerHTML = link; // asendab spani lingiga
+        }
+    };
     Helper.getHTMLTemplate = function (file) {
         var templateHTML = 'fail';
         var xmlHttp = new XMLHttpRequest();
@@ -47,6 +56,55 @@ var Helper;
         return target.replace(mustache, content);
     };
 })(Helper || (Helper = {}));
+/// <reference path='helper.ts' />
+console.log('animals.ts');
+var Animals = (function () {
+    function Animals() {
+        this._animals = ['Karu', 'Kass', 'Hunt'];
+        this._cacheDOM();
+        this._bindEvents();
+        this._render();
+    }
+    Animals.prototype._cacheDOM = function () {
+        this._microTemplate = Helper.getHTMLTemplate('templates/animal-template.html');
+        this._animalsModule = document.getElementById('animalsModule');
+        this._button = this._animalsModule.getElementsByClassName('button').item(0); // item 0 alustab esimesest
+        this._input = this._animalsModule.getElementsByTagName('input').item(0);
+        this._list = this._animalsModule.getElementsByTagName('ul').item(0);
+    };
+    Animals.prototype.showAnimals = function () {
+        console.log(this._animals);
+    };
+    Animals.prototype.addAnimal = function (name) {
+        var animalName = (typeof name === 'string') ? name : this._input.value;
+        this._animals.push(animalName); // lisab loppu
+        this._render(); //et oleks ekraanil näha
+    };
+    Animals.prototype._bindEvents = function () {
+        this._button.addEventListener('click', this.addAnimal.bind(this));
+        this._list.addEventListener('click', this._removeAnimal.bind(this));
+    };
+    Animals.prototype._render = function () {
+        var _this = this;
+        var animals = '';
+        this._animals.forEach(// käib kõik lemendid läbi
+        function (value) {
+            var parsePass1 = Helper.parseHTMLString(_this._microTemplate, '{{name}}', value);
+            animals += parsePass1;
+        });
+        this._list.innerHTML = animals;
+    };
+    Animals.prototype._removeAnimal = function (e) {
+        if (e.target && e.target.nodeName === 'BUTTON') {
+            var element = e.target.parentElement;
+            var parent_1 = element.parentElement;
+            var index = Array.prototype.indexOf.call(parent_1.children, element); // vanema lapsi vaatleme kui massiivi ja otsime indext sealt
+            this._animals.splice(index, 1); // see kustutab  html
+            this._render();
+        }
+    };
+    return Animals;
+}());
 console.log('page.ts');
 /**
  * Page
@@ -105,8 +163,8 @@ var EventPage = (function (_super) {
     EventPage.prototype._deletePerson = function (e) {
         if (e.target && e.target.nodeName === 'BUTTON') {
             var element = e.target.parentElement;
-            var parent_1 = element.parentElement;
-            var index = Array.prototype.indexOf.call(parent_1.children, element); //vanema lapsi vaatleme kui massiivi ja otsime indext selt
+            var parent_2 = element.parentElement;
+            var index = Array.prototype.indexOf.call(parent_2.children, element); //vanema lapsi vaatleme kui massiivi ja otsime indext selt
             this._participant.splice(index, 1); //see kustutab  html-st visuaalselt
             localStorage.setItem('people', JSON.stringify(this._participant)); //kustutab andmebaasist
             this._render();
@@ -162,6 +220,7 @@ var Gallery = (function (_super) {
 }(Page));
 /// <reference path='helper.ts' />
 /// <reference path='page.ts' />
+/// <reference path='animals.ts' />
 console.log('home.ts');
 var Home = (function (_super) {
     __extends(Home, _super);
@@ -179,6 +238,7 @@ var Home = (function (_super) {
         this._homeModule = document.getElementById('home');
         this._button = this._homeModule.querySelector('#refresh');
         this._text = this._homeModule.querySelector('#restOutput');
+        var animals = new Animals(); // kutsub funktsiooni välja
         this._refresh();
     };
     Home.prototype._bindEvents = function () {
@@ -261,6 +321,7 @@ var App = (function () {
     };
     App.prototype._urlChanged = function () {
         var _this = this;
+        Helper.formatEmails('at-mail', '(ät)');
         this._navLinks.forEach(function (value) {
             if (window.location.hash === value.link) {
                 if (value.link === _this._navLinks[0].link) {

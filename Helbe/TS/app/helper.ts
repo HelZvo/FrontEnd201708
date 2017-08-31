@@ -19,6 +19,15 @@ namespace Helper {
         window.location.href = window.location.origin + window.location.hash;
     };
 
+    export const formatEmails = (className: string, splitter: string) => { // emaili (ät)-i vahetamine märgiks
+            const emails = document.getElementsByClassName(className);
+            for (let index = 0; index < emails.length; ++index) {
+                const emailParts = emails.item(index).innerHTML.split(splitter)
+                const email = `${emailParts[0]}@${emailParts[1]}`; // votab elemendi loikab pooleks
+                const link = `<a href="mailto:${email}">${email}</a>`
+                emails.item(index).outerHTML = link; // asendab spani lingiga
+            }
+    };
     export const getHTMLTemplate = (file: string) => { //ajaxi funktsionaalsus
         let templateHTML = 'fail';
         const xmlHttp = new XMLHttpRequest();
@@ -38,4 +47,6 @@ namespace Helper {
     export const parseHTMLString = (target: string, mustache: string, content: string) => { // mustasche funktsionaalsus
         return target.replace(mustache, content);
     };
+    
+    }
 }
