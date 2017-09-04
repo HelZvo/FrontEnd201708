@@ -1,0 +1,12 @@
+<section *ngIf="selectedPerson">
+    <h2>Isiku {{selectedPerson.name}} detailid.</h2>
+    <div>
+        <label>id: </label>{{selectedPerson.id}}
+    </div>
+    <div>
+        <label>nimi: </label>
+        <!-- ngModel votab järgneva sisendiks () sisse - inimesed peavad sisestama [] välja - inimestele lugemiseks info liigub siin molemas suunas -->
+        <input [(ngModel)]="selectedPerson.name" placeholder="sisesta nimi">
+    </div>
+    <button (click)="goBack()">Tagasi</button>
+</section>

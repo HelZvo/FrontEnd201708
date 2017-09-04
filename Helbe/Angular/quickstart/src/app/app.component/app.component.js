@@ -6,34 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var Person = (function () {
-    function Person() {
-    }
-    return Person;
-}());
-exports.Person = Person;
-var PEOPLE = [
-    { id: 101, name: 'Juku' },
-    { id: 102, name: 'Kalle' },
-    { id: 103, name: 'Malle' },
-    { id: 104, name: 'Mart' },
-    { id: 105, name: 'Anna' },
-];
 var AppComponent = (function () {
     function AppComponent() {
         this.name = 'Angular';
-        this.alapealkiri = 'Alapealkiri';
-        this.person = {
-            id: 1,
-            name: 'Juku'
-        };
     }
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
+        moduleId: module.id,
         selector: 'my-app',
-        templateUrl: 'templates/people.html',
+        templateUrl: './people.html',
+        styleUrls: ['./app.component.css'],
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
