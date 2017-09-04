@@ -1,0 +1,15 @@
+<h3>Isikute andmed!</h3>
+<ul class="people">
+    <!-- -->
+    <li *ngFor="let person of people"
+    [class.selected]="person === selectedPerson"
+    (click)="onSelect(person)">
+    <span class="id">{{person.id}}</span> {{person.name}}
+  </li>
+</ul>
+<section *ngIf="selectedPerson">
+  <h2>Isiku {{selectedPerson.name}} detailid!</h2>
+  <div>
+    <button (click)="goToPerson()">Vaata detaile</button>
+  </div>
+</section>

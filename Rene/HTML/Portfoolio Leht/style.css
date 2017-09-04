@@ -1,0 +1,244 @@
+body,html,a,ul,h1,h2,li,h3,div,p {margin:0;padding:0;}
+body,html {height:100%;}
+body {position:relative;font-family:Arial;}
+
+@font-face {
+    font-family: Helveticaa;
+    src: url(HelveticaLTStd-Roman.otf);}
+
+nav a {}
+#top-content {
+    height:100%;
+    width:100%;}
+
+#top-nav {
+    padding:12px 0;
+    border-bottom:1px solid lightgray;}
+
+#top-nav nav {text-align:center;}
+#top-nav ul {list-style-type:none;}
+#top-nav li {display:inline;margin-left:35px;}
+#top-nav a {
+    transition: all 0.3s ease-in;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-size:0.7em;
+    color:gray;}
+
+#top-nav a:hover {
+    color:#424242;
+    font-size:0.72em;
+}
+
+.wrapper {
+    width:800px;
+    margin:80px auto 0;
+    text-align:center;}
+    
+#loe-veel-btn {
+    padding:12px;
+    background:white;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:#545454;
+    border-radius:100px;}
+
+.arrow-icon {padding-left:6px;}
+
+#btn-container {
+    display:none;
+    line-height:42px;
+    border-radius:100px;
+    font-size:0.85em;
+    width:200px;
+    height:42px;
+    margin:40px auto 0 auto;
+    background:linear-gradient(60deg, #FF375A, rgba(255, 147, 23, 0.90));
+   /* background:linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); */}
+
+.intro {
+    display:none;
+    font-weight:400;
+    text-transform:uppercase;
+    color:#3f3f3f;
+    font-size:2.5em;
+    font-family:Helveticaa;}
+
+.skills h2 {color:#3f3f3f;}
+
+#bottom-skills {
+    border-top:1px solid #C8C8C8;
+    border-bottom:1px solid #C8C8C8;
+    bottom:10px;
+    width:100%;
+    position:absolute;}
+
+
+
+.skills {
+    padding:25px;
+    display:inline-block;
+    border-right:1px solid #C8C8C8;
+    height:100%;}
+
+#bottom-skills-wrapper div:nth-child(2) {
+    border-left:1px solid #C8C8C8;}
+
+#bottom-skills h2 {font-size:1.25em;}
+
+.skills h2 {
+    color:gray;
+}
+
+.oskused-h2 {
+
+    float:left;
+    padding:22px;
+    padding-right:40px;
+    margin-top:5px;
+    color:#3E3E3E;}
+
+#btn-container strong {color:#313131;}
+
+
+/* TEINE */
+
+
+#bottom-header {height:100%;}
+
+#wrapper-2 {
+    width:800px;
+    margin:80px auto;
+    text-align:center;}
+
+#projektid-wrapper {
+    margin-top:40px;
+    margin-bottom:90px;
+    width:100%;}
+
+.projekt {
+    border:1px solid lightgray;
+    border-bottom:none;
+    width:100%;
+    line-height:50px;
+    height:50px;}
+
+#projektid-wrapper div:last-child {
+    border-bottom:1px solid lightgray;
+}
+
+.number-box {
+    height: 100%;
+    width:50px;
+    float:left;
+    border-right:1px solid lightgray;
+    color:#616161;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.kulasta {
+    float: right;
+    height: 100%;
+    width:100px;
+    border-left:1px solid lightgray;
+    display:inline-block;
+    color:gray;
+    text-transform:uppercase;
+    font-size:0.9em;
+}
+
+.name {
+    border-right: 1px solid right;
+    float: left;
+    font-size:0.9em;
+    font-weight:bold;
+    color:#747474;
+    margin-left: 20px;
+    height: 100%;
+}
+
+.projektid {
+    font-weight:400;
+    text-transform:uppercase;
+    color:#3f3f3f;
+    font-size:2.2em;
+    font-family:Helveticaa;
+}
+
+.email {
+    font-size:1.2em;
+    font-weight:bold;
+    background:linear-gradient(60deg, #FF375A, rgba(255, 147, 23, 0.90));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    float:left;
+}
+
+table,th,td {
+    border:1px solid lightgray;
+    border-collapse: collapse;}
+
+table {
+    width:100%;
+    margin-top:35px;
+}
+
+    td,th {
+        padding:15px;
+    }
+
+th {
+    font-size:1.3em;
+    color:#616161;
+}
+
+td {
+    font-size:0.8em;
+    font-weight:bold;
+    color:#838383;
+}
+
+#kontakt-wrapper {
+    margin:0 auto;
+    margin-bottom:58px;
+    width:800px;
+    padding:35px;
+}
+
+#bottom {
+    width:100%;
+    border-top:1px solid lightgray;
+    margin-top:130px;
+}
+
+#sots {
+    float:right;
+}
+
+#left-bottom {
+    float:left;
+}
+
+#right-bottom {
+    float:right;
+}
+
+.bottom-title {
+    font-weight:400;
+    text-transform:uppercase;
+    color:#3f3f3f;
+    font-size:1.4em;
+    font-family:Helveticaa;
+}
+
+#right-bottom i {color: gray;}
+
+.koolitus {
+    margin-top:40px;
+    color:#6D6D6D;
+    
+}
+
+a {color:#8A8A8A;}
+
+p {color:#8A8A8A;}

@@ -1,0 +1,69 @@
+<main id="event">
+    <ul id="people">
+
+    </ul>
+    
+    <script id="eventTemplate" type="text/template">
+        <li class="peopleItem">
+            <span>
+                {{name}}
+            </span>
+            <span>
+                {{joined}}
+            </span>    
+            <button>X</button>
+        </li>
+    </script>
+    <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+        <input type="range" name="a" value ="50"/> +
+        <input list="arvud" type="number" name="b" value ="23"/> =
+        <output name="result">73</output>
+        <datalist id="arvud">
+            <option value="2">
+            <option value="12">
+            <option value="23">
+        </datalist>
+    </form>    
+    <form action="" method="GET">
+      <!--  <fieldset>
+            <legend>Ajutine</legend>
+            <label for="textArea">Tekstiala*:</label>
+            <textarea required spellcheck="textArea" name="textArea"></textarea>
+            <textarea readonly id="textArea2">Tere</textarea>
+            <fieldset>
+                <input type="radio" name="size" id="size_1">
+                <label for="size_1">Väike</label><br>
+                <input type="radio" name="size" id="size_2">
+                <label for="size_2">Keskmine</label><br>
+                <input type="radio" name="size" id="size_3">
+                <label for="size_3">Suur</label><br>
+            </fieldset> 
+            <label for="email">Email:</label>
+                <input autocomplete type="email" name="email" id="email"> 
+            <label for="email">Email:</label>
+                <input readonly type="email" name="email2" id="email2" value="juku@hot.ee"><br>  
+            <label for="color">Värv</label>
+                <input type="color" name="color" id="color">
+                <label for="pass">Värv</label>
+                <input autofocus type="password" name="pass" id="pass"><br>
+                <progress value="70" max="100">70%</progress>
+                <output name="result">70%</output><br>
+                <meter low="64" high="80" value="60" max="100">70%</meter>
+                <output name="result">60</output>
+
+        </fieldset>  -->  
+        <fieldset>
+            <legend>Registreerimise vorm:</legend>
+            <label for="personName">Täisnimi:</label>
+            <input required type="text" name="name" id="personName"><br>
+            <label for="joined">Kas liitud:</label>
+            <select id="joined" name="joined">
+                <option value="No">Ei</option>
+                <option value="Maybe">Võibolla</option>
+                <option value="Yes">Jah</option>
+            </select>       
+        </fieldset> 
+       <!-- <input type="submit" value="Saada"/>-->
+       <button type="submit">Saada</button>
+    </form>    
+</main>

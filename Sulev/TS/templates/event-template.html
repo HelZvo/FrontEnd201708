@@ -1,0 +1,62 @@
+<main id="event">
+    <ul id="people">
+
+    </ul>
+    
+    <script id="eventTemplate" type="text/template">
+        <li class="peopleItem">
+            <span>
+                {{name}}
+            </span>
+            <span>
+                {{joined}}
+            </span>
+            <button class="delete-input">X</button>
+        </li>
+    </script>
+    <form action="" method="GET">
+        <!-- <fieldset>
+            <legend>Ajutine</legend>
+            <label for="textArea">Tekstiala*:</label>
+            <textarea required spellcheck="en-us" id="textArea" name="textArea"></textarea>
+            <textarea readonly id="textArea2">Tere</textarea>
+            <fieldset>
+                <input type="radio" name="size" id="size_1">
+                <label for="size_1">Väike</label><br>
+                <input type="radio" name="size" id="size_2">
+                <label for="size_1">Keskmine</label><br>
+                <input type="radio" name="size" id="size_3">
+                <label for="size_1">Suur</label><br>
+            </fieldset>
+            <label for="email">Email:</label>
+            <input autocomplete type="email" name="email" id="email">
+            <label for="email2">Email:</label>
+            <input autocomplete type="email" name="email2" id="email2" value="juku@hot.ee"><br>
+            <label for="color">Värv:</label>
+            <input type="color" name="color" id="color"><br>
+            <label for="pass">Parool:</label>
+            <input autofocus type="password" name="pass" id="pass"><br>
+            <progress value="70" max="100">70%</progress>
+            <meter low="64" high="80" value="70" max="100">80%</meter>
+            <output name="result">60</output>
+            <datalist id="arvud">
+                <option value="2">
+                <option value="3">
+                <option value="41">
+            <datalist>
+        </fieldset> -->
+        <fieldset>
+            <legend>Registreerimise vorm: </legend>
+            <label for="personName">Täisnimi: </label>
+            <input required type="text" name="name" id="personName"><br>
+            <label for="joined">Kas liitud: </label>
+            <select id="joined" name="joined">
+                <option value="No">Ei</option>
+                <option value="Maybe">Võibolla</option>
+                <option value="Yes">Jah</option>
+            </select>
+        </fieldset>
+        <!--<input type="submit" value="Saada"/> esimene variant -->
+        <button type="submit">Saada</button>
+    </form>
+</main>

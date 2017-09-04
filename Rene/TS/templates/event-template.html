@@ -1,0 +1,74 @@
+<main id="event">
+   
+    <ul id="people">
+
+    </ul>
+
+    <script id="eventTemplate" type="text/template">
+        <li class="peopleItem">
+            <span>
+                {{name}}
+            </span>
+
+            <span>joined</span>
+            <button>X</button>
+        </li>
+    </script>
+
+
+    <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+        <input type="range" name="a" value="50"/> +
+        <input type="number" name="b" value="23"/>
+        <output name="result">73</output>
+        <datalist id="arvud">
+            <option value="2">
+                <option value="2">
+                    <option value="23"></datalist>
+    <!--
+   <form action="" method="GET">
+    <fieldset>
+        <legend>Ajutine</legend>
+        <label for="textArea">Tekstiala*:</label>
+        <textarea required spellcheck id="textArea" name="textArea"></textarea>
+        <textarea readonly id="textArea" name="textArea"></textarea>
+        <fieldset>
+            <input type="radio" name="size" id="size_1">
+            <label for "size_1">Väike</label>
+            <input type="radio" name="size" id="size_2">
+            <label for "size_2">Keskmine</label>
+            <input type="radio" name="size" id="size_3">
+            <label for "size_3">Suur</label>
+        </fieldset>
+        <label for="email">E-mail:</label>
+        <input autocomplete type="email">
+
+
+
+
+
+        
+        <progress value="70" max="100">70%</progress>
+        <meter value="70" max="100">70%</meter>
+        <output name="result"></output>
+
+
+    </fieldset>
+
+    -->
+       <fieldset>
+        <legend>Registreerimise vorm:</legend>
+        <label for="personName">
+        Eesnimi: <input required type="text" name="name" id="personName"> 
+        </label>
+
+        <label for="joined">Kas liitud:</label>
+        <select id="joined" name="joined">
+            <option value="No">Ei</option>
+            <option value="Maybe">Võibolla</option>
+            <option value="Yes">Jah</option>
+        </select>
+
+       </fieldset>
+
+       <input type="submit" value="saada">
+</main>

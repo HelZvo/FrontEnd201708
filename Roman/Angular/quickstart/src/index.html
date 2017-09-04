@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Angular QuickStart</title>
-    <base href="/">
+    <!--<base href="/">-->
+    <script>document.write('<base href="' + document.location + '" >');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular QuickStart</title>
     <link rel="stylesheet" href="styles.css">
 
     <!-- Polyfill(s) for older browsers -->
@@ -20,6 +21,7 @@
   </head>
 
   <body>
+    <h3> Tere Tulemast </h3>
     <my-app>Loading AppComponent content here ...</my-app>
   </body>
 </html>

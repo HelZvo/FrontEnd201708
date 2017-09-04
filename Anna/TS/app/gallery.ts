@@ -49,11 +49,10 @@ class Gallery extends Page {
             (value: IPicture) => {
                 const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{caption}}', value.title);
                 const parsePass2 = Helper.parseHTMLString(parsePass1, '{{source}}', `images/${value.link}`);
-                const parsePass3 = Helper.parseHTMLString(parsePass2, '{{alternative}}', value.description);
+                const parsePass3 = Helper.parseHTMLString(parsePass2, '{{altenative}}', value.description);
                 pics += parsePass3;
             }
         );
         this._list.innerHTML = pics;
     }
-
 }

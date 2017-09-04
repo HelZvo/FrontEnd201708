@@ -1,0 +1,9 @@
+<section *ngIf="selectedPerson">
+    <h2>Isiku {{selectedPerson.name}} detailid!</h2>
+    <div><label>id: </label>{{selectedPerson.id}}</div>
+    <div>
+        <label>nimi: </label>
+        <input [(ngModel)]="selectedPerson.name" placeholder="sisesta nimi">
+    </div>
+    <button (click)="goBack()">Tagasi</button>
+</section>
